@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    <link href="~/Content/style_63132835.css" rel="stylesheet" />
+</head>
+
+<body style="margin-top:0px;">
+    <div id="banner" style="top: 0px; position: absolute; background-color: #5D7B6F; font-size:25px; ">
+        <b>HỆ THỐNG QUẢN LÝ THÔNG TIN KHÁCH HÀNG</b>
+    </div>
+
+    <div id="menu" style="margin-top:60px; background-color:#ffffff">
+        <div>
+            @Html.ActionLink("DANH SÁCH", "../GiangViens2023_63132835/Index", new { area = "" }, new { @class = "a" }) &nbsp;|&nbsp;
+            @Html.ActionLink("TÌM KIẾM", "../GiangViens2023_63132835/TimKiem_63132835", new { area = "" }, new { @class = "a" })&nbsp;|&nbsp;
+            @Html.ActionLink("THÊM MỚI", "../GiangViens2023_63132835/Create", new { area = "" }, new { @class = "a" }) &nbsp;|&nbsp;
+            @Html.ActionLink("GIỚI THIỆU", "../GioiThieu_63132835/Index", new { area = "" }, new { @class = "a" })
+            <hr style="display: block;border-top: 1px solid aqua;  margin: 8px 0;" />
+        </div>
+    </div>
+
+    <div id="content">
+        @RenderBody()
+    </div>
+
+    <div id="footer" style="background-color:#5D7B6F">
+        Copyright &copy; @DateTime.Now.Year
+    </div>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
