@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a75917c015e2456ba880cee9bacf4046" Name="Diagram1">
+        <EntityTypeShape EntityType="QLKS_QLDAModel.DICHVU" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKS_QLDAModel.KHACHHANG" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKS_QLDAModel.LOAIPHONG" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKS_QLDAModel.NHANVIEN" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKS_QLDAModel.PHIEUDAT" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKS_QLDAModel.PHONG" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKS_QLDAModel.TANG" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <AssociationConnector Association="QLKS_QLDAModel.FK__PHIEUDAT__MaKH__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="QLKS_QLDAModel.FK__PHONG__MaLoaiPho__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="QLKS_QLDAModel.FK__PHIEUDAT__MaNV__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="QLKS_QLDAModel.FK__PHIEUDAT__MaPhon__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="QLKS_QLDAModel.FK__PHONG__MaTang__52593CB8" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
