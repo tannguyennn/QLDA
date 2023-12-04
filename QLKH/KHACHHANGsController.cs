@@ -6,116 +6,111 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using QLKS.Models;
+using QLKS_LAN2.Models;
 
-namespace QLKS.Controllers
+namespace QLKS_LAN2.Controllers
 {
-    public class KhachHangsController : Controller
+    public class KHACHHANGsController : Controller
     {
-        private QLKSEntities db = new QLKSEntities();
+        private QLKS_QLDAEntities db = new QLKS_QLDAEntities();
 
-        // GET: KhachHangs
+        // GET: KHACHHANGs
         public ActionResult Index()
         {
-            var khachHangs = db.KhachHangs.Include(k => k.LoaiKhachHang);
-            return View(khachHangs.ToList());
+            return View(db.KHACHHANGs.ToList());
         }
 
-        // GET: KhachHangs/Details/5
+        // GET: KHACHHANGs/Details/5
         public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KhachHang khachHang = db.KhachHangs.Find(id);
-            if (khachHang == null)
+            KHACHHANG kHACHHANG = db.KHACHHANGs.Find(id);
+            if (kHACHHANG == null)
             {
                 return HttpNotFound();
             }
-            return View(khachHang);
+            return View(kHACHHANG);
         }
 
-        // GET: KhachHangs/Create
+        // GET: KHACHHANGs/Create
         public ActionResult Create()
         {
-            ViewBag.MaLoaiKhachHang = new SelectList(db.LoaiKhachHangs, "MaLoaiKhachHang", "TenLoaiKhachHang");
             return View();
         }
 
-        // POST: KhachHangs/Create
+        // POST: KHACHHANGs/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaKH,HoKH,TenKH,GioiTinh,NgaySinh,AnhKH,DiaChi,MaLoaiKhachHang")] KhachHang khachHang)
+        public ActionResult Create([Bind(Include = "MaKH,HoKH,TenKH,CMND,Sdt")] KHACHHANG kHACHHANG)
         {
             if (ModelState.IsValid)
             {
-                db.KhachHangs.Add(khachHang);
+                db.KHACHHANGs.Add(kHACHHANG);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.MaLoaiKhachHang = new SelectList(db.LoaiKhachHangs, "MaLoaiKhachHang", "TenLoaiKhachHang", khachHang.MaLoaiKhachHang);
-            return View(khachHang);
+            return View(kHACHHANG);
         }
 
-        // GET: KhachHangs/Edit/5
+        // GET: KHACHHANGs/Edit/5
         public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KhachHang khachHang = db.KhachHangs.Find(id);
-            if (khachHang == null)
+            KHACHHANG kHACHHANG = db.KHACHHANGs.Find(id);
+            if (kHACHHANG == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.MaLoaiKhachHang = new SelectList(db.LoaiKhachHangs, "MaLoaiKhachHang", "TenLoaiKhachHang", khachHang.MaLoaiKhachHang);
-            return View(khachHang);
+            return View(kHACHHANG);
         }
 
-        // POST: KhachHangs/Edit/5
+        // POST: KHACHHANGs/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaKH,HoKH,TenKH,GioiTinh,NgaySinh,AnhKH,DiaChi,MaLoaiKhachHang")] KhachHang khachHang)
+        public ActionResult Edit([Bind(Include = "MaKH,HoKH,TenKH,CMND,Sdt")] KHACHHANG kHACHHANG)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(khachHang).State = EntityState.Modified;
+                db.Entry(kHACHHANG).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.MaLoaiKhachHang = new SelectList(db.LoaiKhachHangs, "MaLoaiKhachHang", "TenLoaiKhachHang", khachHang.MaLoaiKhachHang);
-            return View(khachHang);
+            return View(kHACHHANG);
         }
 
-        // GET: KhachHangs/Delete/5
+        // GET: KHACHHANGs/Delete/5
         public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KhachHang khachHang = db.KhachHangs.Find(id);
-            if (khachHang == null)
+            KHACHHANG kHACHHANG = db.KHACHHANGs.Find(id);
+            if (kHACHHANG == null)
             {
                 return HttpNotFound();
             }
-            return View(khachHang);
+            return View(kHACHHANG);
         }
 
-        // POST: KhachHangs/Delete/5
+        // POST: KHACHHANGs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            KhachHang khachHang = db.KhachHangs.Find(id);
-            db.KhachHangs.Remove(khachHang);
+            KHACHHANG kHACHHANG = db.KHACHHANGs.Find(id);
+            db.KHACHHANGs.Remove(kHACHHANG);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -7,22 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace QLKS.Models
+namespace QLKS_LAN2.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class KhachHang
+    public partial class KHACHHANG
     {
         public string MaKH { get; set; }
         public string HoKH { get; set; }
         public string TenKH { get; set; }
-        public Nullable<bool> GioiTinh { get; set; }
-        public Nullable<System.DateTime> NgaySinh { get; set; }
-        public string AnhKH { get; set; }
-        public string DiaChi { get; set; }
-        public string MaLoaiKhachHang { get; set; }
-    
-        public virtual LoaiKhachHang LoaiKhachHang { get; set; }
+        public string CMND { get; set; }
+        public string Sdt { get; set; }
     }
 }
