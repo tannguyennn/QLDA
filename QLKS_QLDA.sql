@@ -62,6 +62,13 @@ CREATE TABLE PHIEUDAT (
 	PRIMARY KEY(MaNV,MaKH,MaPhong),
 );
 
+GO
+CREATE TABLE QuanTri (
+	Email varchar(50) PRIMARY KEY,
+	Admin bit,
+	HoTen nvarchar(50),
+	Password nvarchar(50)
+)
 
 GO 
 INSERT INTO NHANVIEN VALUES
@@ -112,3 +119,6 @@ INSERT INTO PHIEUDAT VALUES
 ('NV003', 'KH003', '2023-03-05', '2023-03-10', '2023-03-15', 'P003', 0),
 ('NV004', 'KH004', '2023-04-20', '2023-04-25', '2023-04-30', 'P004', 1),
 ('NV005', 'KH005', '2023-05-15', '2023-05-20', '2023-05-25', 'P005', 0);
+GO 
+INSERT INTO QuanTri VALUES
+('miinhtri1310@gmail.com',1,N'Admin','123')

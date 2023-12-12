@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLKS_QLDAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DICHVU">
+    <Key>
+      <PropertyRef Name="MaDV" />
+    </Key>
+    <Property Name="MaDV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TenDV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Gia" Type="Int32" Nullable="false" />
+    <Property Name="TonKho" Type="Int32" Nullable="false" />
+    <Property Name="DonVi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Anh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KHACHHANG">
+    <Key>
+      <PropertyRef Name="MaKH" />
+    </Key>
+    <Property Name="MaKH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="HoKH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TenKH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CMND" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Sdt" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="PHIEUDATs" Relationship="Self.FK__PHIEUDAT__MaKH__5812160E" FromRole="KHACHHANG" ToRole="PHIEUDAT" />
+  </EntityType>
+  <EntityType Name="LOAIPHONG">
+    <Key>
+      <PropertyRef Name="MaLoaiPhong" />
+    </Key>
+    <Property Name="MaLoaiPhong" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LoaiPhong1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Gia" Type="Int32" Nullable="false" />
+    <Property Name="Anh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="PHONGs" Relationship="Self.FK__PHONG__MaLoaiPho__5165187F" FromRole="LOAIPHONG" ToRole="PHONG" />
+  </EntityType>
+  <EntityType Name="NHANVIEN">
+    <Key>
+      <PropertyRef Name="MaNV" />
+    </Key>
+    <Property Name="MaNV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="HoNV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TenNV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NgaySinh" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DiaChi" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SDT" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ChucVu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MatKhau" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="PHIEUDATs" Relationship="Self.FK__PHIEUDAT__MaNV__571DF1D5" FromRole="NHANVIEN" ToRole="PHIEUDAT" />
+  </EntityType>
+  <EntityType Name="PHIEUDAT">
+    <Key>
+      <PropertyRef Name="MaNV" />
+      <PropertyRef Name="MaKH" />
+      <PropertyRef Name="MaPhong" />
+    </Key>
+    <Property Name="MaNV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MaKH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NgayDat" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="NgayVao" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="NgayRa" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="MaPhong" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TinhTrang" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="KHACHHANG" Relationship="Self.FK__PHIEUDAT__MaKH__5812160E" FromRole="PHIEUDAT" ToRole="KHACHHANG" />
+    <NavigationProperty Name="NHANVIEN" Relationship="Self.FK__PHIEUDAT__MaNV__571DF1D5" FromRole="PHIEUDAT" ToRole="NHANVIEN" />
+    <NavigationProperty Name="PHONG" Relationship="Self.FK__PHIEUDAT__MaPhon__59063A47" FromRole="PHIEUDAT" ToRole="PHONG" />
+  </EntityType>
+  <EntityType Name="PHONG">
+    <Key>
+      <PropertyRef Name="MaPhong" />
+    </Key>
+    <Property Name="MaPhong" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MaLoaiPhong" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MaTang" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="LOAIPHONG" Relationship="Self.FK__PHONG__MaLoaiPho__5165187F" FromRole="PHONG" ToRole="LOAIPHONG" />
+    <NavigationProperty Name="PHIEUDATs" Relationship="Self.FK__PHIEUDAT__MaPhon__59063A47" FromRole="PHONG" ToRole="PHIEUDAT" />
+    <NavigationProperty Name="TANG" Relationship="Self.FK__PHONG__MaTang__52593CB8" FromRole="PHONG" ToRole="TANG" />
+  </EntityType>
+  <EntityType Name="QuanTri">
+    <Key>
+      <PropertyRef Name="Email" />
+    </Key>
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Admin" Type="Boolean" />
+    <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="TANG">
+    <Key>
+      <PropertyRef Name="MaTang" />
+    </Key>
+    <Property Name="MaTang" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Tang1" Type="Int32" />
+    <Property Name="TinhTrangPhong" Type="Boolean" Nullable="false" />
+    <Property Name="Anh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="PHONGs" Relationship="Self.FK__PHONG__MaTang__52593CB8" FromRole="TANG" ToRole="PHONG" />
+  </EntityType>
+  <Association Name="FK__PHIEUDAT__MaKH__5812160E">
+    <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="1" />
+    <End Role="PHIEUDAT" Type="Self.PHIEUDAT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHACHHANG">
+        <PropertyRef Name="MaKH" />
+      </Principal>
+      <Dependent Role="PHIEUDAT">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PHONG__MaLoaiPho__5165187F">
+    <End Role="LOAIPHONG" Type="Self.LOAIPHONG" Multiplicity="1" />
+    <End Role="PHONG" Type="Self.PHONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOAIPHONG">
+        <PropertyRef Name="MaLoaiPhong" />
+      </Principal>
+      <Dependent Role="PHONG">
+        <PropertyRef Name="MaLoaiPhong" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PHIEUDAT__MaNV__571DF1D5">
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
+    <End Role="PHIEUDAT" Type="Self.PHIEUDAT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="MaNV" />
+      </Principal>
+      <Dependent Role="PHIEUDAT">
+        <PropertyRef Name="MaNV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PHIEUDAT__MaPhon__59063A47">
+    <End Role="PHONG" Type="Self.PHONG" Multiplicity="1" />
+    <End Role="PHIEUDAT" Type="Self.PHIEUDAT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHONG">
+        <PropertyRef Name="MaPhong" />
+      </Principal>
+      <Dependent Role="PHIEUDAT">
+        <PropertyRef Name="MaPhong" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PHONG__MaTang__52593CB8">
+    <End Role="TANG" Type="Self.TANG" Multiplicity="1" />
+    <End Role="PHONG" Type="Self.PHONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TANG">
+        <PropertyRef Name="MaTang" />
+      </Principal>
+      <Dependent Role="PHONG">
+        <PropertyRef Name="MaTang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLKS_QLDAEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DICHVUs" EntityType="Self.DICHVU" />
+    <EntitySet Name="KHACHHANGs" EntityType="Self.KHACHHANG" />
+    <EntitySet Name="LOAIPHONGs" EntityType="Self.LOAIPHONG" />
+    <EntitySet Name="NHANVIENs" EntityType="Self.NHANVIEN" />
+    <EntitySet Name="PHIEUDATs" EntityType="Self.PHIEUDAT" />
+    <EntitySet Name="PHONGs" EntityType="Self.PHONG" />
+    <EntitySet Name="QuanTris" EntityType="Self.QuanTri" />
+    <EntitySet Name="TANGs" EntityType="Self.TANG" />
+    <AssociationSet Name="FK__PHIEUDAT__MaKH__5812160E" Association="Self.FK__PHIEUDAT__MaKH__5812160E">
+      <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+      <End Role="PHIEUDAT" EntitySet="PHIEUDATs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PHONG__MaLoaiPho__5165187F" Association="Self.FK__PHONG__MaLoaiPho__5165187F">
+      <End Role="LOAIPHONG" EntitySet="LOAIPHONGs" />
+      <End Role="PHONG" EntitySet="PHONGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PHIEUDAT__MaNV__571DF1D5" Association="Self.FK__PHIEUDAT__MaNV__571DF1D5">
+      <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+      <End Role="PHIEUDAT" EntitySet="PHIEUDATs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PHIEUDAT__MaPhon__59063A47" Association="Self.FK__PHIEUDAT__MaPhon__59063A47">
+      <End Role="PHONG" EntitySet="PHONGs" />
+      <End Role="PHIEUDAT" EntitySet="PHIEUDATs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PHONG__MaTang__52593CB8" Association="Self.FK__PHONG__MaTang__52593CB8">
+      <End Role="TANG" EntitySet="TANGs" />
+      <End Role="PHONG" EntitySet="PHONGs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
