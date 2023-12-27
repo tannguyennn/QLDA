@@ -1,0 +1,29 @@
+﻿﻿@model IEnumerable<Project_63132204.Models.Phong>
+
+@{
+    ViewBag.Title = "Đặt phòng";
+    Layout = "~/Views/Shared/_LayoutKH.cshtml";
+    var grid = new WebGrid(Model, canPage: true, defaultSort: "MaPhong", rowsPerPage: 7);
+}
+
+<h2>DANH SÁCH PHÒNG</h2>
+
+<div id="gridContent">
+    @ViewBag.TB
+    @grid.GetHtml(
+        tableStyle: "table table-bordered table-hover",
+        footerStyle: "grid-footer",
+        fillEmptyRows: true,
+        mode: WebGridPagerModes.Numeric,
+        alternatingRowStyle: "alternatingRowStyle",
+          columns: new[]  // colums in grid
+         {
+         grid.Column("STT",format: item => item.WebGrid.Rows.IndexOf(item) + 1 + Math.Round(Convert.ToDouble(grid.TotalRowCount / grid.PageCount) / grid.RowsPerPage) * grid.RowsPerPage * grid.PageIndex),
+        grid.Column("MaPhong","Mã phòng"),
+        grid.Column("TenPhong","Tên phòng"  ),
+        grid.Column("LoaiPhong.TenLoaiPhong","Tên loại phòng"),
+        grid.Column("TrangThai","Trạng thái",format: (@item) => @item.TrangThai==true?"Đã đặt":"Còn trống"),
+        grid.Column(format: (item) => Html.ActionLink("Xem chi tiết", "Details","Phongs63132204", new { id = item.MaPhong },"Phongs63132204Controller")),
+}
+)
+</div>
