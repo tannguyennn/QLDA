@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Project_63132204.Models.HoaDonDatPhong>
+@{
+    ViewBag.Title = "Thongke63132204";
+    Layout = "~/Views/Shared/_LayoutNV.cshtml";
+    var grid = new WebGrid(Model, canPage: true, defaultSort: "NgayDat", rowsPerPage: 10);
+}
+<h2>DOANH THU</h2>
+
+    @using (Html.BeginForm("Thongke63132204", "HoaDonDatPhongsAdmin63132204", FormMethod.Get))
+    {
+        @Html.AntiForgeryToken()
+
+
+        <table class="table2" align="center">
+            <tr>
+                <td>
+                    <div> Ngày bắt đầu</div>
+                </td>
+                <td>
+                    <input type="date" name="ngaydau" value="@ViewBag.ngaydau" />
+                </td>
+
+            </tr>
+            <tr>
+                <td>Ngày kết thúc</td>
+                <td>
+                    <input type="date" name="ngaycuoi" value="@ViewBag.ngaycuoi" />
+                </td>
+
+            </tr>
+            
+            <tr>
+                
+                <td>
+                    <input type="submit" name="submit" value="Tìm kiếm" style="margin-left: 5px;width:100px;
+            background-color: blue;color:white" />
+                    <input type="button" name="Nhapmoi" value="Nhập mới" style="margin-left: 5px;width:100px;
+            background-color: blue;color:white" onclick="location.href='@Url.Action("Thongke63132204", "HoaDonDatPhongsAdmin63132204/Thongke63132204")'" />
+
+                </td>
+            </tr>
+        </table>
+    }
+        <div id="gridContent">
+            @ViewBag.TB
+            @grid.GetHtml(
+                tableStyle: "table table-bordered table-hover",
+                footerStyle: "grid-footer",
+                fillEmptyRows: true,
+                mode: WebGridPagerModes.Numeric,
+                alternatingRowStyle: "alternatingRowStyle",
+                  columns: new[]  // colums in grid
+                 {
+             grid.Column("STT",format: item => item.WebGrid.Rows.IndexOf(item) + 1 + Math.Round(Convert.ToDouble(grid.TotalRowCount / grid.PageCount) / grid.RowsPerPage) * grid.RowsPerPage * grid.PageIndex),
+            grid.Column("MaDatPhong","Mã đặt phòng"), //the model fields to display
+            grid.Column("NhanVien.TenNV","Tên Nhân viên"),
+            grid.Column("KhachHang.TenKH","Tên Nhân viên"),
+            grid.Column("Phong.TenPhong","Tên Phòng"),
+            grid.Column("NgayDat","Ngày đặt",format:@<text> @item.NgayDat.ToString("dd/MM/yyyy")</text>),
+grid.Column(format: (item) => Html.ActionLink("Xem chi tiết", "Details","HoaDonDatPhongsAdmin63132204", new { id = item.MaDatPhong },"HoaDonDatPhongsAdmin63132204Controller")),
+}
+)
+        </div>
